@@ -1,5 +1,13 @@
 <?php if (!defined('BB2_CORE')) die('I said no cheating!');
 
+/*
+ * Modified by Blue Blaze Associates, LLC
+ *
+ * Changes:
+ * * Fix undefined array index lookup.  Search for egifford 2016_10_14b.
+ * * Fix unclosed quotes around table name.  Search for egifford 2016_10_14a.
+ */
+
 require_once("bad-behavior/responses.inc.php");
 
 function bb2_admin_pages() {
@@ -40,7 +48,7 @@ function bb2_httpbl_lookup($ip) {
 	$httpbl_key = $settings['httpbl_key'];
 	if (!$httpbl_key) return false;
 
-	$r = $_SESSION['httpbl'][$ip];
+	$r = isset( $_SESSION['httpbl'] ) && isset( $_SESSION['httpbl'][$ip] ) ? $_SESSION['httpbl'][$ip] : 0; // egifford 2016_10_14b: Fix undefined array index lookup.
 	$d = "";
 	if (!$r) {	// Lookup
 		$find = implode('.', array_reverse(explode('.', $ip)));
@@ -123,16 +131,16 @@ function bb2_manage() {
 	$where = "";
 
 	// Get query variables desired by the user with input validation
-	$paged = 0 + $_GET['paged']; if (!$paged) $paged = 1;
-	if ($_GET['key']) $where .= "AND `key` = '" . $wpdb->escape($_GET['key']) . "' ";
-	if ($_GET['blocked']) $where .= "AND `key` != '00000000' ";
-	else if ($_GET['permitted']) $where .= "AND `key` = '00000000' ";
-	if ($_GET['ip']) $where .= "AND `ip` = '" . $wpdb->escape($_GET['ip']) . "' ";
-	if ($_GET['user_agent']) $where .= "AND `user_agent` = '" . $wpdb->escape($_GET['user_agent']) . "' ";
-	if ($_GET['request_method']) $where .= "AND `request_method` = '" . $wpdb->escape($_GET['request_method']) . "' ";
+	$paged = 0 + ( isset( $_GET['paged'] ) ? $_GET['paged'] : 0 ); if (!$paged) $paged = 1; // egifford 2016_10_14b: Fix undefined array index lookup.
+	if ( isset( $_GET['key'] ) && $_GET['key'] ) $where .= "AND `key` = '" . $wpdb->escape($_GET['key']) . "' "; // egifford 2016_10_14b: Fix undefined array index lookup.
+	if ( isset( $_GET['blocked'] ) && $_GET['blocked'] ) $where .= "AND `key` != '00000000' "; // egifford 2016_10_14b: Fix undefined array index lookup.
+	else if ( isset( $_GET['permitted'] ) && $_GET['permitted'] ) $where .= "AND `key` = '00000000' "; // egifford 2016_10_14b: Fix undefined array index lookup.
+	if ( isset( $_GET['ip'] ) && $_GET['ip'] ) $where .= "AND `ip` = '" . $wpdb->escape($_GET['ip']) . "' "; // egifford 2016_10_14b: Fix undefined array index lookup.
+	if ( isset( $_GET['user_agent'] ) && $_GET['user_agent'] ) $where .= "AND `user_agent` = '" . $wpdb->escape($_GET['user_agent']) . "' "; // egifford 2016_10_14b: Fix undefined array index lookup.
+	if ( isset( $_GET['request_method'] ) && $_GET['request_method'] ) $where .= "AND `request_method` = '" . $wpdb->escape($_GET['request_method']) . "' "; // egifford 2016_10_14b: Fix undefined array index lookup.
 
 	// Query the DB based on variables selected
-	$r = bb2_db_query("SELECT COUNT(id) FROM `" . $settings['log_table']);
+	$r = bb2_db_query("SELECT COUNT(id) FROM `" . $settings['log_table'] . "`"); // egifford 2016_10_14a: Fix unclosed quotes around table name.
 	$results = bb2_db_rows($r);
 	$totalcount = $results[0]["COUNT(id)"];
 	$r = bb2_db_query("SELECT COUNT(id) FROM `" . $settings['log_table'] . "` WHERE 1=1 " . $where);
@@ -169,8 +177,8 @@ Displaying <strong><?php echo $count; ?></strong> of <strong><?php echo $totalco
 <?php else: ?>
 Displaying all <strong><?php echo $totalcount; ?></strong> records<br/>
 <?php endif; ?>
-<?php if (!$_GET['key'] && !$_GET['blocked']) { ?><a href="<?php echo esc_url( add_query_arg(array("blocked" => "1", "permitted" => "0", "paged" => false), $request_uri) ); ?>">Show Blocked</a> <?php } ?>
-<?php if (!$_GET['key'] && !$_GET['permitted']) { ?><a href="<?php echo esc_url( add_query_arg(array("permitted" => "1", "blocked" => "0", "paged" => false), $request_uri) ); ?>">Show Permitted</a> <?php } ?>
+<?php if ( isset( $_GET['key'] ) && !$_GET['key'] && isset( $_GET['blocked'] ) && !$_GET['blocked'] ) { ?><a href="<?php echo esc_url( add_query_arg(array("blocked" => "1", "permitted" => "0", "paged" => false), $request_uri) ); ?>">Show Blocked</a> <?php } ?> // egifford 2016_10_14b: Fix undefined array index lookup.
+<?php if ( isset( $_GET['key'] ) && !$_GET['key'] && isset( $_GET['permitted'] ) && !$_GET['permitted'] ) { ?><a href="<?php echo esc_url( add_query_arg(array("permitted" => "1", "blocked" => "0", "paged" => false), $request_uri) ); ?>">Show Permitted</a> <?php } ?> // egifford 2016_10_14b: Fix undefined array index lookup.
 </div>
 </div>
 
@@ -309,17 +317,17 @@ function bb2_options()
 	if ($_POST) {
 		check_admin_referer('bad-behavior-options');
 		$_POST = array_map('stripslashes_deep', $_POST);
-		if ($_POST['display_stats']) {
+		if ( isset( $_POST['display_stats'] ) && $_POST['display_stats'] ) { // egifford 2016_10_14b: Fix undefined array index lookup.
 			$settings['display_stats'] = true;
 		} else {
 			$settings['display_stats'] = false;
 		}
-		if ($_POST['strict']) {
+		if ( isset( $_POST['strict'] ) && $_POST['strict'] ) { // egifford 2016_10_14b: Fix undefined array index lookup.
 			$settings['strict'] = true;
 		} else {
 			$settings['strict'] = false;
 		}
-		if ($_POST['verbose']) {
+		if ( isset( $_POST['verbose'] ) && $_POST['verbose'] ) { // egifford 2016_10_14b: Fix undefined array index lookup.
 			$settings['verbose'] = true;
 		} else {
 			$settings['verbose'] = false;
@@ -358,17 +366,17 @@ function bb2_options()
 		} else {
 			$settings['httpbl_maxage'] = '30';
 		}
-		if ($_POST['offsite_forms']) {
+		if ( isset( $_POST['offsite_forms'] ) && $_POST['offsite_forms'] ) { // egifford 2016_10_14b: Fix undefined array index lookup.
 			$settings['offsite_forms'] = true;
 		} else {
 			$settings['offsite_forms'] = false;
 		}
-		if ($_POST['eu_cookie']) {
+		if ( isset( $_POST['eu_cookie'] ) && $_POST['eu_cookie'] ) { // egifford 2016_10_14b: Fix undefined array index lookup.
 			$settings['eu_cookie'] = true;
 		} else {
 			$settings['eu_cookie'] = false;
 		}
-		if ($_POST['reverse_proxy']) {
+		if ( isset( $_POST['reverse_proxy'] ) && $_POST['reverse_proxy'] ) { // egifford 2016_10_14b: Fix undefined array index lookup.
 			$settings['reverse_proxy'] = true;
 		} else {
 			$settings['reverse_proxy'] = false;

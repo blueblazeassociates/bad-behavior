@@ -9,6 +9,7 @@ Changes:
 
 * Tweaked plugin header to use afragen/github-updater.
 * Fixed undefined array index bugs.
+* Fixed unclosed quotes in db query.
 
 Branches:
 
