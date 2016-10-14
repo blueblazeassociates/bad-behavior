@@ -177,8 +177,8 @@ Displaying <strong><?php echo $count; ?></strong> of <strong><?php echo $totalco
 <?php else: ?>
 Displaying all <strong><?php echo $totalcount; ?></strong> records<br/>
 <?php endif; ?>
-<?php if ( isset( $_GET['key'] ) && !$_GET['key'] && isset( $_GET['blocked'] ) && !$_GET['blocked'] ) { ?><a href="<?php echo esc_url( add_query_arg(array("blocked" => "1", "permitted" => "0", "paged" => false), $request_uri) ); ?>">Show Blocked</a> <?php } ?> // egifford 2016_10_14b: Fix undefined array index lookup.
-<?php if ( isset( $_GET['key'] ) && !$_GET['key'] && isset( $_GET['permitted'] ) && !$_GET['permitted'] ) { ?><a href="<?php echo esc_url( add_query_arg(array("permitted" => "1", "blocked" => "0", "paged" => false), $request_uri) ); ?>">Show Permitted</a> <?php } ?> // egifford 2016_10_14b: Fix undefined array index lookup.
+<?php if ( isset( $_GET['key'] ) && !$_GET['key'] && isset( $_GET['blocked'] ) && !$_GET['blocked'] ) { ?><a href="<?php echo esc_url( add_query_arg(array("blocked" => "1", "permitted" => "0", "paged" => false), $request_uri) ); ?>">Show Blocked</a> <?php } // egifford 2016_10_14b: Fix undefined array index lookup. ?>
+<?php if ( isset( $_GET['key'] ) && !$_GET['key'] && isset( $_GET['permitted'] ) && !$_GET['permitted'] ) { ?><a href="<?php echo esc_url( add_query_arg(array("permitted" => "1", "blocked" => "0", "paged" => false), $request_uri) ); ?>">Show Permitted</a> <?php } // egifford 2016_10_14b: Fix undefined array index lookup. ?>
 </div>
 </div>
 
