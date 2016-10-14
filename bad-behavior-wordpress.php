@@ -16,16 +16,16 @@
  */
 
 /*
- * Plugin Name:          Bad Behavior
- * Plugin URI:           https://github.com/blueblazeassociates/bad-behavior
- * Original Plugin URI:  http://bad-behavior.ioerror.us/
- * Description:          Deny automated spambots access to your PHP-based Web site.
- * Version:              2.2.19
- * Author:               Michael Hampton
- * Author URI:           http://bad-behavior.ioerror.us/
- * License:              LGPLv3
- * Bitbucket Plugin URI: https://github.com/blueblazeassociates/bad-behavior
- * Bitbucket Branch:     blueblaze
+ * Plugin Name:         Bad Behavior
+ * Plugin URI:          https://github.com/blueblazeassociates/bad-behavior
+ * Original Plugin URI: http://bad-behavior.ioerror.us/
+ * Description:         Deny automated spambots access to your PHP-based Web site.
+ * Version:             2.2.19
+ * Author:              Michael Hampton
+ * Author URI:          http://bad-behavior.ioerror.us/
+ * License:             LGPLv3
+ * GitHub Plugin URI:   https://github.com/blueblazeassociates/bad-behavior
+ * GitHub Branch:       blueblaze
  */
 
 /*
