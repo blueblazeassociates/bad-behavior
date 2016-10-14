@@ -8,6 +8,14 @@
  */
 
 /*
+ * Modified by Blue Blaze Associates, LLC
+ *
+ * Changes:
+ * * Added file phpDoc comment.
+ * * Tweaked WordPress plugin header.
+ */
+
+/*
  * Plugin Name:          Bad Behavior
  * Plugin URI:           https://github.com/blueblazeassociates/bad-behavior
  * Original Plugin URI:  http://bad-behavior.ioerror.us/
