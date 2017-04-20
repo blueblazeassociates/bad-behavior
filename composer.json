@@ -3,7 +3,9 @@
   "description" : "Bad Behavior:  Deny automated spambots access to your PHP-based Web site.",
   "type"        : "wordpress-plugin",
   "homepage"    : "https://github.com/blueblazeassociates/bad-behavior",
-  "license"     : "LGPL-3.0",
+  "license" : [
+    "LGPL-3.0"
+  ],
   "authors" : [{
       "name"     : "Michael Hampton",
       "homepage" : "http://bad-behavior.ioerror.us/",
@@ -27,9 +29,15 @@
     "wpackagist-plugin/bad-behavior" : "2.2.19"
   },
   "require" : {
-    "php" : ">=5.6.24"
+    "php" : ">=5.6.0"
+  },
+  "require-dev" : {
+    "roave/security-advisories"    : "dev-master",
+    "sllh/composer-versions-check" : "^2.0"
+  },
+  "suggest" : {
   },
   "config" : {
-    "php" : "5.6.*"
+    "php" : "5.6.0"
   }
 }
