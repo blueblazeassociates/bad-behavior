@@ -20,7 +20,7 @@
  * Plugin URI:          https://github.com/blueblazeassociates/bad-behavior
  * Original Plugin URI: http://bad-behavior.ioerror.us/
  * Description:         Deny automated spambots access to your PHP-based Web site.
- * Version:             2.2.19.2
+ * Version:             2.2.19.3
  * Author:              Michael Hampton
  * Author URI:          http://bad-behavior.ioerror.us/
  * License:             LGPLv3
