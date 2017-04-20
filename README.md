@@ -10,6 +10,7 @@ Changes:
 * Tweaked plugin header to use afragen/github-updater.
 * Fixed undefined array index bugs.
 * Fixed unclosed quotes in db query.
+* Changed to use function_exists(). is_callable() was failing on SiteGround php-cli.
 
 Branches:
 
