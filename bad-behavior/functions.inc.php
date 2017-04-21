@@ -74,7 +74,7 @@ function is_rfc1918($addr) {
 // headers. Run PHP as Apache 2.0 module if possible for best results.
 function bb2_load_headers() {
 //	if (!is_callable('getallheaders')) {
-  if (!function_exists('getallheaders')) { // egifford 2017_04_20: Changed to use function_exists(). is_callable() was failing on SiteGround php-cli.
+  if (false === function_exists('getallheaders')) { // egifford 2017_04_20: Changed to use function_exists(). is_callable() was failing on SiteGround php-cli.
 		$headers = array();
 		foreach ($_SERVER as $h => $v)
 			if (preg_match('/HTTP_(.+)/', $h, $hp))
