@@ -11,6 +11,7 @@
  * Modified by Blue Blaze Associates, LLC
  *
  * Changes:
+ * * Bypass plugin if WP-CLI. Search for egifford 2017_05_02.
  * * Added file phpDoc comment.
  * * Tweaked WordPress plugin header.
  */
@@ -52,6 +53,8 @@ http://bad-behavior.ioerror.us/
 ###############################################################################
 
 if (!defined('ABSPATH')) die("No cheating!");
+
+if ( defined( 'WP_CLI' ) && WP_CLI ) { return; } // egifford 2017_05_02: Bypass plugin if WP-CLI.
 
 global $bb2_result;
 
