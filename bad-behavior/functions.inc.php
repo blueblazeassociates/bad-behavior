@@ -1,12 +1,5 @@
 <?php if (!defined('BB2_CORE')) die("I said no cheating!");
 
-/*
- * Modified by Blue Blaze Associates, LLC
- *
- * Changes:
- * * Changed to use function_exists(). is_callable() was failing on SiteGround php-cli.  Search for egifford 2017_04_20.
- */
-
 // Miscellaneous helper functions.
 
 // Quick and dirty check for an IPv6 address
@@ -73,8 +66,7 @@ function is_rfc1918($addr) {
 // NB: on PHP-CGI we have to fake it out a bit, since we can't get the REAL
 // headers. Run PHP as Apache 2.0 module if possible for best results.
 function bb2_load_headers() {
-//	if (!is_callable('getallheaders')) {
-  if (false === function_exists('getallheaders')) { // egifford 2017_04_20: Changed to use function_exists(). is_callable() was failing on SiteGround php-cli.
+	if (!is_callable('getallheaders')) {
 		$headers = array();
 		foreach ($_SERVER as $h => $v)
 			if (preg_match('/HTTP_(.+)/', $h, $hp))
