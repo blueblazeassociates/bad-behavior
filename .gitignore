@@ -7,7 +7,7 @@
 /.buildpath
 /.project
 
-# Exlude composer.lock file.
+# Exclude composer.lock file.
 /composer.lock
 
 # Exclude composer managed vendor directories.

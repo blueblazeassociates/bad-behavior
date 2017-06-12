@@ -26,14 +26,12 @@
     "trackback"
   ],
   "replace" : {
-    "wpackagist-plugin/bad-behavior" : "2.2.19"
+    "wpackagist-plugin/bad-behavior" : "<=2.2.19"
   },
   "require" : {
     "php" : ">=5.6.0"
   },
   "require-dev" : {
-    "roave/security-advisories"    : "dev-master",
-    "sllh/composer-versions-check" : "^2.0"
   },
   "suggest" : {
   },
