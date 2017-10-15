@@ -11,6 +11,7 @@
  * Modified by Blue Blaze Associates, LLC
  *
  * Changes:
+ * * Bypass plugin if WP-CLI. Search for egifford 2017_05_02.
  * * Added file phpDoc comment.
  * * Tweaked WordPress plugin header.
  */
@@ -20,7 +21,7 @@
  * Plugin URI:          https://github.com/blueblazeassociates/bad-behavior
  * Original Plugin URI: http://bad-behavior.ioerror.us/
  * Description:         Deny automated spambots access to your PHP-based Web site.
- * Version:             2.2.19
+ * Version:             2.2.20
  * Author:              Michael Hampton
  * Author URI:          http://bad-behavior.ioerror.us/
  * License:             LGPLv3
