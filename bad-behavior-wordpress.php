@@ -21,7 +21,7 @@
  * Plugin URI:          https://github.com/blueblazeassociates/bad-behavior
  * Original Plugin URI: http://bad-behavior.ioerror.us/
  * Description:         Deny automated spambots access to your PHP-based Web site.
- * Version:             2.2.20
+ * Version:             2.2.20.1
  * Author:              Michael Hampton
  * Author URI:          http://bad-behavior.ioerror.us/
  * License:             LGPLv3
@@ -53,6 +53,8 @@ http://bad-behavior.ioerror.us/
 ###############################################################################
 
 if (!defined('ABSPATH')) die("No cheating!");
+
+if ( defined( 'WP_CLI' ) && WP_CLI ) { return; } // egifford 2017_05_02: Bypass plugin if WP-CLI.
 
 global $bb2_result;
 
